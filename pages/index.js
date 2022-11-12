@@ -1,8 +1,121 @@
 import Head from 'next/head'
 import Image from 'next/image'
 import styles from '../styles/Home.module.css'
+import { useState } from 'react'
+import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { auth } from '../firebase'
+import { useRouter } from 'next/router'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth'
+function LoginBox() {
+  const router = useRouter();
+  return (<Formik
 
+    initialValues={{ email: '', password: '' }}
+
+    onSubmit={(values, { setSubmitting }) => {
+      console.log("submit")
+      signInWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCred) => {
+          console.log(userCred)
+          router.push('/welcome')
+        }).catch((error) => {
+          console.log("Error : ", error)
+        })
+
+      setSubmitting(false)
+
+    }}
+
+  >
+
+    {({ isSubmitting }) => (
+
+      <Form className="flex flex-col justify-center items-center border-radius-[15px]">
+        <div className="flex mb-4  flex-col gap-2">
+          <label> Email </label>
+          <Field type="email" name="email" className="border rounded p-1" />
+          <ErrorMessage name="email" component="div" />
+        </div>
+        <div className='flex mb-4  flex-col gap-2' >
+          <label> Password </label>
+          <Field type="password" name="password" className="border rounded p-1" />
+          <ErrorMessage name="password" component="div" />
+        </div>
+        <button type="submit" disabled={isSubmitting} className="bg-blue-600 text-white p-2 rounded mb-4">
+
+          LogIn
+
+        </button>
+
+      </Form>
+
+    )}
+
+  </Formik>)
+}
+
+function SignupBox() {
+  const router = useRouter();
+  return (<Formik
+
+    initialValues={{ email: '', password: '' }}
+
+    onSubmit={(values, { setSubmitting }) => {
+      createUserWithEmailAndPassword(auth, values.email, values.password)
+        .then((userCred) => {
+          console.log("user : ", userCred)
+          router.push('/welcome')
+        }).catch((error) => {
+          console.log(error);
+          alert(error)
+        })
+      setSubmitting(false)
+    }}
+
+  >
+
+    {({ isSubmitting }) => (
+
+      <Form className="flex flex-col justify-center items-center border-radius-[15px]">
+        <div className='flex mb-4  flex-col gap-2'>
+          <label className='self-start'> Email</label>
+          <Field type="email" name="email" label="email" className="border rounded p-1" />
+          <ErrorMessage name="email" component="div" />
+        </div>
+        <div className='flex mb-4  flex-col gap-2'>
+          <label className='self-start'> Name</label>
+          <Field type="name" name="name" label="name" className="border rounded p-1" />
+          <ErrorMessage name="name" component="div" />
+        </div>
+        <div className='flex mb-4  flex-col gap-2'>
+          <label className='self-start'> Password</label>
+          <Field type="password" name="password" className="border rounded p-1" />
+
+          <ErrorMessage name="password" component="div" />
+        </div>
+        <div className='flex mb-4  flex-col gap-2'>
+          <label className='self-start'> Verification password</label>
+          <Field type="password" name="confirm_password" className="border rounded p-1" />
+
+          <ErrorMessage name="confirm_password" component="div" />
+        </div>
+        <button type="submit" disabled={isSubmitting} className="bg-blue-600 rounded text-white p-2 mb-4">
+
+          SignUp
+
+        </button>
+
+      </Form>
+
+    )}
+
+  </Formik>)
+
+}
 export default function Home() {
+  const LOGIN_MODE = 0;
+  const SIGNUP_MODE = 1;
+  const [mode, changeMode] = useState(LOGIN_MODE)
   return (
     <div className={styles.container}>
       <Head>
@@ -11,46 +124,15 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.main}>
-        <h1 className={styles.title}>
-          Welcome to <a href="https://nextjs.org">Next.js!</a>
-        </h1>
-
-        <p className={styles.description}>
-          Get started by editing{' '}
-          <code className={styles.code}>pages/index.js</code>
-        </p>
-
-        <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h2>Learn &rarr;</h2>
-            <p>Learn about Next.js in an interactive course with quizzes!</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
+      <main className="flex flex-col justify-center items-center h-screen bg-gray-100">
+        <div className="flex flex-col justify-center items-center border rounded p-8 shadow-md bg-white w-2/5">
+          <div className='py-8 text-xl font-bold'>
+            CramWithMe
+          </div>
+          {mode == LOGIN_MODE ? <LoginBox /> : <SignupBox />}
+          <div onClick={mode == LOGIN_MODE ? () => changeMode(SIGNUP_MODE) : () => changeMode(LOGIN_MODE)} className="cursor-pointer text-blue-400">
+            {mode == LOGIN_MODE ? <span>Create an account</span> : <span>Already have an account? Sign In </span>}
+          </div>
         </div>
       </main>
 
