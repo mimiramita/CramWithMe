@@ -1,22 +1,30 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    userCredential: {}
+    uid: '',
+    email: '',
+    photoURL: ''
 }
 export const userCredSlice = createSlice({
     name: 'userCred',
     initialState,
     reducers: {
-        saveUserCredential: (state, action) => {
-            state.userCredential = action.payload
+        saveUid: (state, action) => {
+            state.uid = action.payload
         },
-        removeUserCredential: (state) => {
-            state.userCredential = {}
+        saveEmail: (state, action) => {
+            state.email = action.payload
+        },
+        savePhoto: (state, action) => {
+            state.photoURL = action.payload
+        },
+        clearUserCredential: (state) => {
+            state = { uid: '', email: '', photoURL: '' }
         }
     },
 })
 
 // Action creators are generated for each case reducer function
-export const { saveUserCredential, removeUserCredential } = userCredSlice.actions
+export const { saveUid, saveEmail, savePhoto, removeUserCredential } = userCredSlice.actions
 
 export default userCredSlice.reducer

@@ -3,10 +3,9 @@ import { auth } from '../firebase';
 import { useRouter } from 'next/router';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { useSelector, useDispatch } from 'react-redux';
-import { saveUserCredential, removeUserCredential } from '../features/user/userCredSlices';
+import { saveUid, saveEmail, savePhoto, clearUserCredential } from '../features/user/userCredSlices';
 export function SignupBox() {
     const router = useRouter();
-    const userCred = useSelector((state) => state.userCred.value)
     const dispatch = useDispatch()
     return (<Formik
 
@@ -16,7 +15,9 @@ export function SignupBox() {
             createUserWithEmailAndPassword(auth, values.email, values.password)
                 .then((userCred) => {
                     console.log("user : ", userCred);
-                    dispatch(saveUserCredential(userCred))
+                    dispatch(saveUid(userCred.user.uid))
+                    dispatch(saveEmail(userCred.user.email))
+                    dispatch(savePhoto(userCred.user.photoURL))
                     router.push('/profile');
                 }).catch((error) => {
                     console.log(error);
