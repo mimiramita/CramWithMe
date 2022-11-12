@@ -2,9 +2,12 @@ import { Formik, Form, Field, ErrorMessage } from 'formik';
 import { auth } from '../firebase';
 import { useRouter } from 'next/router';
 import { signInWithEmailAndPassword } from 'firebase/auth';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { saveUserCredential, removeUserCredential } from '../features/user/userCredSlices';
 export function LoginBox() {
     const router = useRouter();
+    const userCred = useSelector((state) => state.userCred.value)
+    const dispatch = useDispatch()
     return (<Formik
 
         initialValues={{ email: '', password: '' }}
@@ -13,6 +16,7 @@ export function LoginBox() {
             signInWithEmailAndPassword(auth, values.email, values.password)
                 .then((userCred) => {
                     console.log(userCred);
+                    dispatch(saveUserCredential(userCred))
                     router.push('/profile');
                 }).catch((error) => {
                     console.log("Error : ", error);
