@@ -9,6 +9,7 @@ export default function Home() {
   const LOGIN_MODE = 0;
   const SIGNUP_MODE = 1;
   const [mode, changeMode] = useState(LOGIN_MODE)
+
   return (
     <div className={styles.container}>
       <Head>
