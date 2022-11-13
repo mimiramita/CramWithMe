@@ -9,6 +9,7 @@ import {
   savePhoto,
   clearUserCredential,
 } from "../features/user/userCredSlices";
+import { setCookie } from 'cookies-next'
 export function SignupBox() {
   const router = useRouter();
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ export function SignupBox() {
             dispatch(saveUid(userCred.user.uid));
             dispatch(saveEmail(userCred.user.email));
             dispatch(savePhoto(userCred.user.photoURL));
+            setCookie("uid", userCred.user.uid)
             router.push("/profile");
           })
           .catch((error) => {

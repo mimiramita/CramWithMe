@@ -3,8 +3,9 @@ import styles from "../styles/Home.module.css";
 import Profile from "../components/ProfileCard";
 import { writeUserData } from "../firebase";
 import Link from "next/link";
-
+import { getCookie } from 'cookies-next'
 export default function Home() {
+  const uid = getCookie("uid")
   return (
     <div className={styles.container}>
       <Head>
@@ -54,7 +55,7 @@ export default function Home() {
             margin: "auto",
           }}
         >
-          <Profile username="jkelly"></Profile>
+          <Profile username={uid}></Profile>
         </div>
       </main>
     </div>
