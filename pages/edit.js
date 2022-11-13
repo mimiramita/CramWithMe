@@ -102,7 +102,10 @@ export default function Home() {
       event.target.gender.value,
       event.target.interests.value,
       event.target.college.value,
-      event.target.currentClasses.value
+      event.target.currentClasses.value,
+      event.target.phoneNumber.value,
+      event.target.email.value,
+      event.target.bio.value
     );
     router.push("/profile");
   };
