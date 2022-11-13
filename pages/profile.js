@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.testFont} style={{fontWeight:"200"}}>
+      <main className={styles.testFont} style={{ fontWeight: "200" }}>
         <nav
           class="navbar"
           style={{

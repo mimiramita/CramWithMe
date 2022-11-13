@@ -6,12 +6,12 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Home() {
-  const [arr, setarr] = useState(
-    [{ name: "Jane" },
+  const [arr, setarr] = useState([
+    { name: "Jane" },
     { name: "John" },
     { name: "Claire" },
-    { name: "Jen" }]
-  );
+    { name: "Jen" },
+  ]);
   useEffect(() => {
     console.log(arr);
   }, [arr]);
