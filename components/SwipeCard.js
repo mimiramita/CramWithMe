@@ -1,22 +1,50 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import styles from "../styles/profile.module.css";
 import { getUserData } from "../firebase";
 import Link from "next/link";
+import { Overlay, Button } from "react-bootstrap";
 
 export default function Swipe({ username }) {
   const [data, setData] = useState(null);
   const [isLoading, setLoading] = useState(false);
+  const [arr, setarr] = useState([
+    "1Dcr1AfSowh2NBh3utI6GPmoWd83",
+    "ORlEm1yG9FT0puO3kIXN8cqjB1y1",
+  ]);
+  const [show, setShow] = useState(false);
+  const target = useRef(null);
 
   useEffect(() => {
     setLoading(true);
-    getUserData(username).then((data) => {
-      setData(data);
-      setLoading(false);
-    });
-  }, []);
+    if (arr.length !== 0) {
+      getUserData(arr[0]).then((data) => {
+        setData(data);
+      });
+    }
+    setLoading(false);
+    console.log(arr);
+  }, [arr]);
 
   if (isLoading) return <p></p>;
   if (!data) return <p></p>;
+
+  // useEffect(() => {
+  //   console.log(arr);
+  // }, [arr]);
+  const handleReject = () => {
+    setarr(arr.slice(1, arr.length));
+    if (arr.length !== 0) {
+      getUserData(arr[0]).then((data) => {
+        setData(data);
+      });
+    } else {
+      setShow(!show);
+    }
+  };
+  const handleAccept = () => {
+    setarr(arr.slice(1, arr.length));
+    setData(arr[0]);
+  };
 
   return (
     <div className={styles.center}>
@@ -38,7 +66,11 @@ export default function Swipe({ username }) {
         class="card"
         style={{ position: "absolute", top: "30px", width: "60%" }}
       >
-        <div class="card-body" style={{ height: "100%", width: "80%" }}>
+        <div
+          class="card-body"
+          style={{ height: "100%", width: "80%" }}
+          ref={target}
+        >
           <div style={{ textAlign: "left", width: "120%" }}>
             <h1 ClassName={styles.profileName}>{data.name.toLowerCase()}</h1>
             <h3 ClassName={styles.profileUniversity}>
@@ -110,6 +142,7 @@ export default function Swipe({ username }) {
                 type="button"
                 class="btn btn-danger"
                 style={{ width: "50%", borderRadius: "0", height: "32px" }}
+                onClick={handleReject}
               >
                 <img
                   src="/book-2.png"
@@ -125,6 +158,7 @@ export default function Swipe({ username }) {
                 type="button"
                 class="btn btn-success"
                 style={{ width: "50%", borderRadius: "0", height: "32px" }}
+                onClick={handleAccept}
               >
                 <img
                   src="/book.png"
@@ -140,6 +174,28 @@ export default function Swipe({ username }) {
           </div>
         </div>
       </div>
+
+      <Overlay target={target.current} show={show} placement="right">
+        {({ placement, arrowProps, show: _show, popper, ...props }) => (
+          <div
+            {...props}
+            style={{
+              position: "absolute",
+              backgroundColor: "rgba(255, 100, 100, 0.85)",
+              padding: "2px 10px",
+              color: "white",
+              borderRadius: 3,
+              width: "70%",
+              height: "50%",
+              marginLeft: "-50%",
+              marginTop: "-3%",
+              ...props.style,
+            }}
+          >
+            Simple tooltip
+          </div>
+        )}
+      </Overlay>
     </div>
   );
 }

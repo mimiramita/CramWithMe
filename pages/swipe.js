@@ -6,21 +6,6 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Home() {
-  const [arr, setarr] = useState([
-    { name: "Jane" },
-    { name: "John" },
-    { name: "Claire" },
-    { name: "Jen" },
-  ]);
-  useEffect(() => {
-    console.log(arr);
-  }, [arr]);
-  const handleReject = () => {
-    setarr(arr.slice(0, -1));
-  };
-  const handleAccept = () => {
-    setarr(arr.slice(0, -1));
-  };
   return (
     <div className={styles.container}>
       <Head>
