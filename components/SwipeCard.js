@@ -181,7 +181,7 @@ export default function Swipe({ username }) {
             {...props}
             style={{
               position: "absolute",
-              backgroundColor: "rgba(255, 100, 100, 0.85)",
+              backgroundColor: "rgba(247, 181, 26, 0.9)",
               padding: "2px 10px",
               color: "white",
               borderRadius: 3,
@@ -189,10 +189,29 @@ export default function Swipe({ username }) {
               height: "50%",
               marginLeft: "-50%",
               marginTop: "-3%",
+              fontFamily: "ZenMaruGothic",
+              fontWeight: "lighter",
+              textAlign: "center",
               ...props.style,
             }}
           >
-            Simple tooltip
+            <Button
+              onClick={() => setShow(!show)}
+              style={{
+                float: "right",
+                backgroundColor: "rgba(247, 181, 26, 0)",
+                border: "none",
+                marginTop: "10px",
+              }}
+            >
+              <img src="/close.png" style={{ width: "35px" }}></img>
+            </Button>
+
+            <p style={{ fontSize: "36px", marginTop: "50px" }}>
+              Want to keep finding new people?
+            </p>
+            <p style={{ fontSize: "54px" }}>Consider Our Premium Package!</p>
+            <p style={{ fontSize: "44px" }}>only 1.99$ per year</p>
           </div>
         )}
       </Overlay>
