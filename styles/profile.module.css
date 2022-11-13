@@ -1,0 +1,10 @@
+.profile {
+    border-radius: 50%;
+    width: 200px;
+  }
+
+.center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

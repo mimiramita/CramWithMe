@@ -1,14 +1,14 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import styles from '../styles/Home.module.css'
-import { useState } from 'react'
-import { LoginBox } from '../components/LoginBox';
-import { SignupBox } from '../components/SignupBox';
+import Head from "next/head";
+import Image from "next/image";
+import styles from "../styles/Home.module.css";
+import { useState } from "react";
+import { LoginBox } from "../components/LoginBox";
+import { SignupBox } from "../components/SignupBox";
 
 export default function Home() {
   const LOGIN_MODE = 0;
   const SIGNUP_MODE = 1;
-  const [mode, changeMode] = useState(LOGIN_MODE)
+  const [mode, changeMode] = useState(LOGIN_MODE);
 
   return (
     <div className={styles.container}>
@@ -18,14 +18,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className="flex flex-col justify-center items-center h-screen bg-gray-100">
-        <div className="flex flex-col justify-center items-center border rounded p-8 shadow-md bg-white w-2/5">
-          <div className='py-8 text-xl font-bold'>
-            CramWithMe
-          </div>
+      <main className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-h-screen tw-bg-gray-100">
+        <div className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-border tw-rounded tw-p-8 tw-shadow-md tw-bg-white tw-w-2/5">
+          <div className="tw-py-8 tw-text-xl tw-font-bold">CramWithMe</div>
           {mode == LOGIN_MODE ? <LoginBox /> : <SignupBox />}
-          <div onClick={mode == LOGIN_MODE ? () => changeMode(SIGNUP_MODE) : () => changeMode(LOGIN_MODE)} className="cursor-pointer text-blue-400">
-            {mode == LOGIN_MODE ? <span>Create an account</span> : <span>Already have an account? Sign In </span>}
+          <div
+            onClick={
+              mode == LOGIN_MODE
+                ? () => changeMode(SIGNUP_MODE)
+                : () => changeMode(LOGIN_MODE)
+            }
+            className="tw-cursor-pointer tw-text-blue-400"
+          >
+            {mode == LOGIN_MODE ? (
+              <span>Create an account</span>
+            ) : (
+              <span>Already have an account? Sign In </span>
+            )}
           </div>
         </div>
       </main>
@@ -36,12 +45,12 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Powered by{' '}
+          Powered by{" "}
           <span className={styles.logo}>
             <Image src="/vercel.svg" alt="Vercel Logo" width={72} height={16} />
           </span>
         </a>
       </footer>
     </div>
-  )
+  );
 }
