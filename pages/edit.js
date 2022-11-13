@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { getUserData, updateUserData } from "../firebase";
 import Link from "next/link";
 import { useRouter } from "next/router";
-
+import { getCookie } from 'cookies-next'
 export default function Home() {
   const router = useRouter();
   const [data, setData] = useState(null);
@@ -19,10 +19,10 @@ export default function Home() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const [email, setEmail] = useState("");
   const [bio, setBio] = useState("");
-
+  const uid = getCookie("uid")
   useEffect(() => {
     setLoading(true);
-    getUserData("jkelly").then((data) => {
+    getUserData(uid).then((data) => {
       setData(data);
       setName(data.name);
       setCollege(data.college);
@@ -95,7 +95,7 @@ export default function Home() {
 
   const submitChange = (event) => {
     updateUserData(
-      "jkelly",
+      uid,
       event.target.name.value,
       event.target.year.value,
       event.target.major.value,
