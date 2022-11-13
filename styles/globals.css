@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,8 +7,6 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
 
 a {
@@ -28,4 +27,11 @@ a {
     color: white;
     background: black;
   }
+}
+
+@font-face {
+  font-family: ZenMaruGothic;
+  src: url(../fonts/Zen_Maru_Gothic/ZenMaruGothic-Regular.ttf);
+  font-weight: normal;
+  font-style: normal;
 }

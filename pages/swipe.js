@@ -1,10 +1,26 @@
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import Profile from "../components/ProfileCard";
+import Swipe from "../components/SwipeCard";
 import { writeUserData } from "../firebase";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 export default function Home() {
+  const [arr, setarr] = useState([
+    { name: "Jane" },
+    { name: "John" },
+    { name: "Claire" },
+    { name: "Jen" },
+  ]);
+  useEffect(() => {
+    console.log(arr);
+  }, [arr]);
+  const handleReject = () => {
+    setarr(arr.slice(0, -1));
+  };
+  const handleAccept = () => {
+    setarr(arr.slice(0, -1));
+  };
   return (
     <div className={styles.container}>
       <Head>
@@ -13,7 +29,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className={styles.testFont} style={{ fontWeight: "200" }}>
+      <main className={styles.testFont}>
         <nav
           class="navbar"
           style={{
@@ -30,9 +46,9 @@ export default function Home() {
             ></img>
           </a>
           <span class="d-flex">
-            <Link href="/swipe">
+            <Link href="/profile">
               <button class="btn" type="submit">
-                <img src="/home2.png" style={{ width: "40px" }}></img>
+                <img src="/user.png" style={{ width: "40px" }}></img>
               </button>
             </Link>
           </span>
@@ -54,7 +70,7 @@ export default function Home() {
             margin: "auto",
           }}
         >
-          <Profile username="jkelly"></Profile>
+          <Swipe username="jkelly"></Swipe>
         </div>
       </main>
     </div>

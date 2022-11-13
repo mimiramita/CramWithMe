@@ -127,3 +127,8 @@
     filter: invert(1);
   }
 }
+
+.testFont {
+  font-family: 'ZenMaruGothic' , sans-serif;
+  font-weight: lighter;
+}

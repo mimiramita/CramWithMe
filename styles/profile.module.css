@@ -1,6 +1,32 @@
 .profile {
-    border-radius: 50%;
-    width: 200px;
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  left: 112px;
+  top: 112px;
+  
+  background: #EFEFEF;
+  border-radius: 50%;
+  }
+
+.profileName {
+font-style: normal;
+font-weight: 400;
+font-size: 36px;
+line-height: 52px;
+border: solid black;
+
+color: #000000;
+}
+
+.profileUniversity {
+  font-style: normal;
+  font-weight: 150;
+  font-size: 24px;
+  line-height: 52px;
+  border: solid black;
+  
+  color: #000000;
   }
 
 .center {
