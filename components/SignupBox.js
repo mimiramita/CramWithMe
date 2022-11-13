@@ -1,5 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from "formik";
-import { auth } from "../firebase";
+import { auth, writeUserData } from "../firebase";
 import { useRouter } from "next/router";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { useSelector, useDispatch } from "react-redux";
@@ -23,7 +23,11 @@ export function SignupBox() {
             dispatch(saveUid(userCred.user.uid));
             dispatch(saveEmail(userCred.user.email));
             dispatch(savePhoto(userCred.user.photoURL));
-            setCookie("uid", userCred.user.uid)
+            setCookie("uid", userCred.user.uid, {
+              sameSite: "none",
+              secure: false
+            })
+            writeUserData(userCred.user.uid)
             router.push("/profile");
           })
           .catch((error) => {

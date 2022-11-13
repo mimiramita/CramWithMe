@@ -107,6 +107,7 @@ export async function updateUserData(
 
     // Write the new post's data simultaneously in the posts list and the user's post list.
     const updates = {};
+    console.log("AM HERE")
     updates["/users/" + username] = postData;
     return await update(ref(db), updates)
 }

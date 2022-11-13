@@ -23,7 +23,10 @@ export function LoginBox() {
             dispatch(saveUid(userCred.user.uid));
             dispatch(saveEmail(userCred.user.email));
             dispatch(savePhoto(userCred.user.photoURL));
-            setCookie("uid", userCred.user.uid)
+            setCookie("uid", userCred.user.uid, {
+              sameSite: "none",
+              secure: false
+            })
             router.push("/profile");
           })
           .catch((error) => {

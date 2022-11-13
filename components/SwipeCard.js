@@ -72,7 +72,7 @@ export default function Swipe({ username }) {
           ref={target}
         >
           <div style={{ textAlign: "left", width: "120%" }}>
-            <h1 ClassName={styles.profileName}>{data.name.toLowerCase()}</h1>
+            <h1 ClassName={styles.profileName}>{data?.name.toLowerCase()}</h1>
             <h3 ClassName={styles.profileUniversity}>
               university of massachusetts - amherst
             </h3>
