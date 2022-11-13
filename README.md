@@ -1,34 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+**CRAMWITHME**
+=========================
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+**MOTIVATION**
+========================
+There are times that we find the syllabus hard or challennging, and we want to study with someone who takes the same course as they do, or we just want to find a more interactive studying environment where we can share and exchange opinion on the course. However, finding that person is difficult because our close friends might not be in the same major or taking the same courses as we do. So, we create this Web app to solve this problem.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+**SCREENSHOTS**
+=====================
+1.home page
+2.swipe
+3.profile
+4.match found(maybe)
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
 
-## Learn More
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**TECH**
+====================
+1.[NEXT.JS](https://nextjs.org)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+The Web app is mostly powered by [NEXT.JS](https://nextjs.org) which is is a flexible [REACT](https://reactjs.org/) framework that gives you building blocks to create fast web applications. Its main benifits are handling the tooling and configuration needed for React, and providing additional structure, features, and optimizations for your application. 
 
-## Deploy on Vercel
+2.[FIREBASE](https://firebase.google.com/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Google Firebase is a Google-backed application development software that enables developers to develop iOS, Android and Web apps. Firebase provides tools for tracking analytics, reporting and fixing app crashes, and in our case, we use it to create a more convenient Login and Signup page.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+3.[BOOTSTRAP](https://getbootstrap.com/docs/5.0/getting-started/introduction/)
+
+Bootstrap is a free, open source front-end development framework for the creation of websites and Web apps. It helps us design our front-end more easily and less time-consuming
+
+4.[TAILWIND CSS](https://tailwindcss.com/)
+
+Tailwind CSS is a "utility-first" framework, which means that we can access the utility classes to control the padding, margin, color, shadow, and other CSS related aspects of the Web app.
+
+
+
+
